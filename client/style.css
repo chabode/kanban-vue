@@ -1,0 +1,27 @@
+#body{
+    text-align: center;
+}
+
+#container{
+    display: flex;
+    border: .1em solid black;
+    justify-content: space-evenly;
+}
+
+#item{
+    border: solid red .1em;
+    margin: 5px;
+    padding: 5px;
+}
+
+li{
+    list-style-type: none;
+    border: solid green .1em;
+}
+
+#inner-container{
+    display: flex;
+    flex-direction: column;
+    border: .1em solid blue;
+    padding: 5px;
+}
