@@ -51,6 +51,7 @@ export default {
     text-decoration: none;
     padding: 8px 15px;
     background-color: #f50a0a;
+    color: white;
 }
 .navbar .nav a:hover{
     background-color: #f5680a;

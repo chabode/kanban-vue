@@ -8,6 +8,7 @@
                 <div class="card">
                     <p>{{ card.title }}</p>
                     <p>By : {{ card.User.email}}</p>
+                    <p style="font-size: .7em">Created At: {{ card.createdAt.toLocaleString() }} </p>
                     <div class="btn-group" role="group">
                         <button class="btn btn-info" @click="moveKiri(card)">Left</button>
                         <!-- <button class="btn btn-primary" @click="edit">Edit</button> -->
@@ -167,7 +168,8 @@ export default {
     width: 24%;
 }
 .wrapper{
-    border: solid brown .1em;
+    /* border: solid brown .1em; */
+    background-color: green;
     height: 100%;
     overflow: scroll;
 }

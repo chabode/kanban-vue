@@ -34,6 +34,8 @@ export default {
     },
     methods: {
         logout(){
+            var auth2 = gapi.auth2.getAuthInstance()
+            auth2.signOut()
             localStorage.clear()
             this.email = ''
             this.isLogin = false

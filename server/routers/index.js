@@ -7,6 +7,7 @@ router.get('/', (req,res) => {
 })
 router.post('/login', UserController.login)
 router.post('/register', UserController.register)
+router.post('/googlesign', UserController.googleSignIn)
 router.use('/task', taskRouter)
 
 module.exports = router

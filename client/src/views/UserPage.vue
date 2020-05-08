@@ -10,8 +10,15 @@
             <button v-if="register" class="btn btn-primary" @click.prevent="registerUser">Register</button>
             <button v-if="login" class="btn btn-primary" @click.prevent="loginUser">Login</button>
         </form>
-        <p  v-if="register">Already have an account? <a class="btn" @click.prevent="showLogin">Login</a></p>
+        <p v-if="register">Already have an account? <a class="btn" @click.prevent="showLogin">Login</a></p>
         <p v-if="login">Do you have an account ? <a class="btn"  @click.prevent="showRegister">Register</a></p>
+        <p>OR</p>
+        <g-signin-button class="btn btn-primary"
+            :params="googleSignInParams"
+            @success="onSignInSuccess"
+            @error="onSignInError">
+            Sign in with Google
+        </g-signin-button>
     </div>
 </template>
 
@@ -29,7 +36,10 @@ export default {
             email: '',
             password: '',
             login: false,
-            register : true
+            register : true,
+            googleSignInParams :{
+                client_id: "814540410174-94lo0pjocfi3mdtar29dot2e5665jla1.apps.googleusercontent.com"
+            }
         }
     },
     methods : {
@@ -42,9 +52,7 @@ export default {
             this.register = true
         },
         loginUser(){
-            // const email = this.email
-            // const password = this.password
-            // console.log('ini login >>> ' + email + ' ' + password)
+            
             axios({
                 url : this.url + '/login',
                 method: 'POST',
@@ -68,9 +76,7 @@ export default {
             })
         },
         registerUser(){
-            // const email = this.email
-            // const password = this.password
-            // console.log('ini register >>> ' + email + ' ' + password)
+            
             axios({
                 url: this.url + '/register',
                 method: 'POST',
@@ -89,6 +95,29 @@ export default {
                 this.password = ''
                 console.log(err.response)
             })
+        },
+        onSignInSuccess (googleUser) {
+            const {id_token} = googleUser.getAuthResponse()
+            axios({
+                url: this.url + '/googlesign',
+                method: 'POST',
+                data :{
+                    id_token
+                }
+            })
+            .then(response => {
+                const data = response.data
+                localStorage.setItem('access_token', data.access_token)
+                localStorage.setItem('email', data.email)
+                this.$emit('isLogin', data.email)
+            })
+            .catch(err => {
+                console.log('Error Login >> ' + err)
+            })
+        },
+        onSignInError (error) {
+        
+            console.log('Error >>> ', error)
         }
     }
 }
