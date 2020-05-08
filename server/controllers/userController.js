@@ -2,7 +2,7 @@ const { User } = require('../models')
 const { checkPassword } = require('../helper/bcrypt')
 const { getToken } = require('../helper/jwt')
 const { OAuth2Client } = require('google-auth-library')
-const CLIENT_ID = "814540410174-94lo0pjocfi3mdtar29dot2e5665jla1.apps.googleusercontent.com"
+const CLIENT_ID = process.env.CLIENT_ID
 const client = new OAuth2Client(CLIENT_ID)
 
 class UserController {

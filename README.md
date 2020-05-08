@@ -184,56 +184,6 @@ _Response (400 - Bad Request)_
 }
 ```
 
-### GET /task/:id
-> Get task from certain id
-
-_Request Header_
-```
-{
-    "access_token" = "<your access token>"
-}
-```
-
-_Request Body_
-```
-{
-    "id" : <your designated id todo>
-}
-```
-
-_Response (200)_
-```
-[
-    {
-        "id" : <your given id>,
-        "title" : <your todo name based on id>,
-        "description" : <your todo description based on id>,
-        "status" : <your todo status based on id>,
-        "due_date" : <your todo due_date based on id>,
-        "createdAt" : "2020-03-20T07:15:12.149Z",
-        "updatedAt": "2020-03-20T07:15:12.149Z",
-    }
-]
-```
-_Response (403)_
-```
-{
-    "message" : "Forbidden Access"
-}
-```
-_Response (404)_
-```
-{
-    "message" : "<data not found>"
-}
-```
-_Response (500)_
-```
-{
-    "message" : "<error message>"
-}
-```
-
 ### PATCH /task/:id
 > Edit category task from certain id
 

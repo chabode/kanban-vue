@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const secret_key = 'kanbankampai'
+const secret_key = process.env.SECRET_KEY
 
 let getToken = (user) => {
     let token = jwt.sign({
