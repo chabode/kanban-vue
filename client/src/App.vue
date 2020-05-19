@@ -15,6 +15,7 @@ export default {
     name: 'App',
     data() {
         return {
+            // url : 'https://kanban-kanpai.herokuapp.com',
             url : 'http://localhost:3000',
             isLogin: false,
             email: ''
@@ -34,8 +35,8 @@ export default {
     },
     methods: {
         logout(){
-            var auth2 = gapi.auth2.getAuthInstance()
-            auth2.signOut()
+            // var auth2 = gapi.auth2.getAuthInstance()
+            // auth2.signOut()
             localStorage.clear()
             this.email = ''
             this.isLogin = false

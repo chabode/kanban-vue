@@ -4,19 +4,8 @@
             <p style="text-align: center;">{{ category }}</p>
         </div>
         <div class="wrapper">
-            <div v-for="(card, index) in cards" :key='index' :card='card'>
-                <div class="card">
-                    <p>{{ card.title }}</p>
-                    <p>By : {{ card.User.email}}</p>
-                    <p style="font-size: .7em">Created At: {{ card.createdAt.toLocaleString() }} </p>
-                    <div class="btn-group" role="group">
-                        <button class="btn btn-info" @click="moveKiri(card)">Left</button>
-                        <!-- <button class="btn btn-primary" @click="edit">Edit</button> -->
-                        <button class="btn btn-danger" @click="hapus(card.id)">Delete</button>
-                        <button class="btn btn-info" @click="moveKanan(card)">Right</button>
-                    </div>
-                </div>
-            </div>
+            <KanbanCard v-for="(card,index) in cards" :key="index" :card="card"
+            @moveKiri="moveKiri" @hapus="hapus" @moveKanan="moveKanan"> </KanbanCard>
         </div>
         <AddTask v-if="condition" @addTask='addTask'> </AddTask>
 
@@ -32,12 +21,14 @@
 
 import axios from 'axios'
 import AddTask from './AddTask'
+import KanbanCard from './KanbanCard'
 
 export default {
     name: 'KanbanBoard',
     props: ['category', 'url', 'cards'],
     components: {
-        AddTask
+        AddTask,
+        KanbanCard
     },
     data(){
         return {
@@ -74,6 +65,11 @@ export default {
                 this.condition = false
             })
             .catch(err => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'No empty task inserted'
+                })
                 console.log(err.response)
             })
         },
@@ -178,6 +174,6 @@ export default {
     margin: 10px;
     margin-left: 10px;
     display: flex;
-    padding: 5px;
+    padding: 10px;
 }
 </style>

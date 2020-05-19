@@ -70,7 +70,12 @@ export default {
                 this.password = ''
             })
             .catch(err => {
-                console.log(err.data)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Invalid email or password'
+                })
+                console.log(err)
                 this.email = ''
                 this.password = ''
             })
@@ -91,6 +96,11 @@ export default {
                 console.log(data)
             })
             .catch(err => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops',
+                    text: err.response.request.response
+                })
                 this.email = ''
                 this.password = ''
                 console.log(err.response)

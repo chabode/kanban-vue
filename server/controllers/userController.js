@@ -13,7 +13,7 @@ class UserController {
             where : {email}
         })
         .then(user => {
-            console.log(user)
+            // console.log(user)
             if (user){
                 throw({name:`Email has been registered`})
             } else {
@@ -66,9 +66,10 @@ class UserController {
         })
         .then(user => {
             if(user){
-                const access_token = generateToken(user)
+                const access_token = getToken(user)
                 const email = user.email
                 res.status(200).json({access_token, email})
+                next()
             } else {
                 return User.create({ 
                     email : currentEmail, 
