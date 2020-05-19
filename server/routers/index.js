@@ -4,7 +4,7 @@ const taskRouter = require('./task')
 
 router.get('/', (req,res) => {
     res.send('Masuk di index js')
-    console.log('masuk di index.js')
+    // console.log('masuk di index.js')
 })
 router.post('/login', UserController.login)
 router.post('/register', UserController.register)

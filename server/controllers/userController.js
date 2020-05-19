@@ -31,18 +31,16 @@ class UserController {
     static login(req,res,next){
         const {email,password} = req.body
         User.findOne({
-            where: {email:email}
+            where: {email}
         })
         .then(user => {
             if(!user || !checkPassword(password, user.password)){
                 next({status : 400})
-            }
-            return user
-        })
-        .then(user => {
-            const access_token = getToken(user)
-            const email = user.email
-            res.status(200).json({access_token,email})
+            } else {
+                const access_token = getToken(user)
+                const email = user.email
+                res.status(200).json({access_token,email})
+            }  
         })
         .catch(err => {
             next(err)

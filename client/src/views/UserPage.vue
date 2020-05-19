@@ -54,7 +54,7 @@ export default {
         loginUser(){
             
             axios({
-                url : this.url + '/login',
+                url : `${this.url}/login`,
                 method: 'POST',
                 data: {
                     email : this.email, 
@@ -83,7 +83,7 @@ export default {
         registerUser(){
             
             axios({
-                url: this.url + '/register',
+                url: `${this.url}/register`,
                 method: 'POST',
                 data : {
                     email : this.email,
@@ -109,7 +109,7 @@ export default {
         onSignInSuccess (googleUser) {
             const {id_token} = googleUser.getAuthResponse()
             axios({
-                url: this.url + '/googlesign',
+                url: `${this.url}/googlesign`,
                 method: 'POST',
                 data :{
                     id_token

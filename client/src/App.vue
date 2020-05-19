@@ -15,8 +15,8 @@ export default {
     name: 'App',
     data() {
         return {
-            // url : 'https://kanban-kanpai.herokuapp.com',
-            url : 'http://localhost:3000',
+            url : 'https://kanban-kanpai.herokuapp.com',
+            // url : 'http://localhost:3000',
             isLogin: false,
             email: ''
         }
